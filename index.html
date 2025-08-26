@@ -2,168 +2,92 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Day별 복사</title>
+  <title>치환 도구</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f6f8;
-      padding: 40px;
-      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
     }
-
-    #buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+    textarea, input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
     }
-
     button {
-      padding: 12px 20px;
-      font-size: 16px;
-      background-color: #ffffff;
-      color: #333;
-      border: 2px solid #ccc;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
-
-    button:hover {
-      background-color: #4f46e5;
-      color: #fff;
-      border-color: #4f46e5;
-      transform: translateY(-2px);
+    #replaceBtn {
+      background-color: #4CAF50;
+      color: white;
     }
-
-    button:active {
-      transform: scale(0.98);
+    #copyBtn {
+      background-color: #2196F3;
+      color: white;
+    }
+    .section {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+  <h2>텍스트 치환기</h2>
 
-  <h2>📋 원하는 Day를 클릭하면 복사됩니다</h2>
+  <div class="section">
+    <label for="originalText">🔤 원본 텍스트:</label>
+    <textarea id="originalText" rows="10" placeholder="여기에 텍스트를 입력하세요..."></textarea>
+  </div>
 
-  <div id="buttons">
-    <button id="Prologue">Prologue</button>
-    <button id="day1">Day1</button>
-    <button id="day2">Day2</button>
-    <button id="day3">Day3</button>
-    <button id="day4">Day4</button>
-    <button id="day5">Day5</button>
-    <button id="day6">Day6</button>
-    <button id="day7">Day7</button>
-    <button id="day8">Day8</button>
-    <button id="day9">Day9</button>
-    <button id="day10">Day10</button>
-    <button id="day11">Day11</button>
-    <button id="day12">Day12</button>
-    <button id="day13">Day13</button>
-    <button id="day14">Day14</button>
-    <button id="day15">Day15</button>
-    <button id="day16">Day16</button>
-    <button id="day17">Day17</button>
-    <button id="day18">Day18</button>
+  <div class="section">
+    <label for="findText">🔍 바꿀 단어(문장):</label>
+    <input type="text" id="findText" placeholder="예: 꾸깃꾸깃한 천 원">
+  </div>
+
+  <div class="section">
+    <label for="replaceText">✏️ 바꿀 내용:</label>
+    <input type="text" id="replaceText" placeholder="예: 오천원">
+  </div>
+
+  <button id="replaceBtn" onclick="replaceText()">치환하기</button>
+
+  <div class="section">
+    <label for="resultText">✅ 치환된 결과:</label>
+    <textarea id="resultText" rows="10" readonly placeholder="치환 결과가 여기에 표시됩니다."></textarea>
+    <button id="copyBtn" onclick="copyResult()">복사하기</button>
   </div>
 
   <script>
-    document.getElementById("Prologue").addEventListener("click", function () {
-      navigator.clipboard.writeText("www")
-        .then(() => alert("Prologue: 복사 완료!"));
-    });
+    function replaceText() {
+      const original = document.getElementById("originalText").value;
+      const find = document.getElementById("findText").value;
+      const replaceWith = document.getElementById("replaceText").value;
 
-    document.getElementById("day1").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day1: 복사 완료!"));
-    });
+      if (!find) {
+        alert("바꿀 단어를 입력해주세요.");
+        return;
+      }
 
-    document.getElementById("day2").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day2: 복사 완료!"));
-    });
+      const result = original.split(find).join(replaceWith);
+      document.getElementById("resultText").value = result;
+    }
 
-    document.getElementById("day3").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day3: 복사 완료!"));
-    });
-
-    document.getElementById("day4").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day4: 복사 완료!"));
-    });
-
-    document.getElementById("day5").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day5: 복사 완료!"));
-    });
-
-    document.getElementById("day6").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day6: 복사 완료!"));
-    });
-
-    document.getElementById("day7").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day7: 복사 완료!"));
-    });
-
-    document.getElementById("day8").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day8: 복사 완료!"));
-    });
-
-    document.getElementById("day9").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day9: 복사 완료!"));
-    });
-
-    document.getElementById("day10").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day10: 복사 완료!"));
-    });
-
-    document.getElementById("day11").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day11: 복사 완료!"));
-    });
-
-    document.getElementById("day12").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day12: 복사 완료!"));
-    });
-
-    document.getElementById("day13").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day13: 복사 완료!"));
-    });
-
-    document.getElementById("day14").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day14: 복사 완료!"));
-    });
-
-    document.getElementById("day15").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day15: 복사 완료!"));
-    });
-
-    document.getElementById("day16").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day16: 복사 완료!"));
-    });
-
-    document.getElementById("day17").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day17: 복사 완료!"));
-    });
-
-    document.getElementById("day18").addEventListener("click", function () {
-      navigator.clipboard.writeText("반가워요")
-        .then(() => alert("Day18: 복사 완료!"));
-    });
+    function copyResult() {
+      const resultField = document.getElementById("resultText");
+      resultField.select();
+      resultField.setSelectionRange(0, 99999); // 모바일 호환
+      document.execCommand("copy");
+      alert("결과가 복사되었습니다!");
+    }
   </script>
-
 </body>
 </html>
