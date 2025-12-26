@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title> </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    /* 버튼 + 토스트 묶는 컨테이너 */
+    .wrapper {
+      position: relative;
+    }
+
+    button {
+      padding: 16px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 12px;
+      background: #4285f4;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:active {
+      opacity: 0.85;
+    }
+
+    /* 버튼 바로 위 토스트 */
+    .toast {
+      position: absolute;
+      bottom: 100%;          /* 버튼 위 */
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 12px;   /* 버튼과 간격 */
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+
+  <script>
+    function moveBrowser() {
+      const textToCopy = "58L7YF586K";
+      const copyMessage = "보안코드가 복사되었습니다";
+      const url = "https://dbtn68.github.io/hLwIfSD/";
+      const ua = navigator.userAgent.toLowerCase();
+
+      // 📋 클립보드 복사
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast(copyMessage);
+      }).catch(() => {
+        alert("복사 실패! 직접 복사해주세요:\n" + textToCopy);
+      });
+
+      // 🔀 이동
+      setTimeout(() => {
+        if (ua.includes("android")) {
+          window.location.href =
+            "intent://" + url.replace(/^https?:\/\//, "") +
+            "#Intent;scheme=https;package=com.android.chrome;end";
+        } else {
+          window.location.href = url;
+        }
+      }, 800);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1500);
+    }
+  </script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="toast" class="toast"></div>
+    <button onclick="moveBrowser()">이동하기</button>
+  </div>
+</body>
+</html>
